@@ -93,7 +93,7 @@ class TourismDataScraper:
                 if df is None:
                     print("[STRATEGY] Strategy 2: BeautifulSoup parsing...")
                     try:
-                        soup = BeautifulSoup(response.text, 'lxml')
+                        soup = BeautifulSoup(response.text, 'html.parser')
                         table = self._parse_html_table(soup)
                         df = table if table is not None else None
                         if df is not None:
@@ -105,7 +105,7 @@ class TourismDataScraper:
                 if df is None:
                     print("[STRATEGY] Strategy 3: Div/list extraction...")
                     try:
-                        soup = BeautifulSoup(response.text, 'lxml')
+                        soup = BeautifulSoup(response.text, 'html.parser')
                         df = self._extract_from_div_lists(soup)
                         if df is not None:
                             print(f"[DIV] Extracted: {len(df)} rows x {len(df.columns)} cols")
